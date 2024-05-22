@@ -22,3 +22,42 @@ function calculateAge() {
     const result = `You are ${age} years old.`;
     document.getElementById('result').innerText = result
 }
+
+
+// Todo-List
+
+
+
+    const newTaskInput = document.getElementById('new-task');
+    const addTaskButton = document.getElementById('add-task-btn');
+    const taskList = document.getElementById('task-list');
+
+    const addTask = () => {
+        const taskText = newTaskInput.value.trim();
+        if (taskText !== '') {
+            const li = document.createElement('li');
+            li.textContent = taskText;
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.classList.add('delete-btn');
+            deleteButton.addEventListener('click', () => {
+                li.remove();
+            });
+
+            li.appendChild(deleteButton);
+
+            li.addEventListener('click', () => {
+                li.classList.toggle('completed');
+            });
+
+            taskList.appendChild(li);
+
+            newTaskInput.value = '';
+        }
+    };
+
+    addTaskButton.addEventListener('click', addTask);
+
+    
+
